@@ -73,13 +73,14 @@ uv run alembic downgrade -1
 ## Тестирование
 
 Общее покрытие: **73%** (21 тест)
+
 ### Запуск тестов
 
-### Все тесты с покрытием
+#### Все тесты с покрытием
 uv run pytest tests/ --cov=app --cov-report=term-missing
 
-### Только модульные
+#### Только модульные
 uv run pytest tests/unit/ -v
 
-### Только интеграционные
+#### Только интеграционные
 uv run pytest tests/integration/ -v -m integration
