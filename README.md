@@ -22,10 +22,12 @@
 
 ## Быстрый запуск (Docker)
 
-### Клонировать репозиторий
+```bash
+# Клонировать репозиторий
 git clone https://github.com/Konstanta202/Yadro_test.git
+cd Yadro_test
 
-### Запустить все сервисы
+# Запустить все сервисы
 docker-compose up --build
 
 Приложение будет доступно:
