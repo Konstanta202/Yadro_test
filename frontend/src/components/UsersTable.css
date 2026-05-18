@@ -1,0 +1,159 @@
+.users-table-container {
+  margin-top: 20px;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.users-table th,
+.users-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.users-table th {
+  background-color: #282c34;
+  color: white;
+  font-weight: bold;
+}
+
+.users-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.btn-detail {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-detail:hover {
+  background-color: #0056b3;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Пагинация */
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-page {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-page:hover:not(:disabled) {
+  background-color: #e9ecef;
+}
+
+.btn-page.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.btn-page:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Группа с многоточием */
+.dots-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.dots {
+  padding: 8px 4px;
+  color: #666;
+  font-weight: bold;
+  cursor: default;
+}
+
+.dots-group:hover .jump-form {
+  display: flex;
+}
+
+.jump-form {
+  display: none;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.jump-input {
+  width: 50px;
+  padding: 4px 6px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.jump-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.jump-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.jump-btn:hover {
+  background-color: #0056b3;
+}
+
+.page-info {
+  color: #666;
+  font-size: 14px;
+}
