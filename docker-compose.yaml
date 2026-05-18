@@ -6,10 +6,20 @@ services:
     container_name: backend-test-task
     env_file:
       - backend/.env
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     depends_on:
       - database
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    container_name: frontend-test-task
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
     networks:
       - app-network
 
@@ -21,11 +31,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1111
     ports:
-      - "5437:5432"
+      - "5440:5432"
     networks:
       - app-network
 
-
 networks:
   app-network:
-    driver: bridge 
+    driver: bridge
