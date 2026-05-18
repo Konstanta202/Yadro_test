@@ -30,7 +30,7 @@ async def get_random_user(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="В базе данных нет пользователей"
+            detail="There are no users in the database"
         )
 
     return user
@@ -47,7 +47,7 @@ async def get_user(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Пользователь с id {user_id} не найден"
+            detail=f"User with id {user_id} not found"
         )
 
     return user
@@ -55,13 +55,13 @@ async def get_user(
 
 @router.post("/users/load", status_code=status.HTTP_201_CREATED)
 async def load_users(
-    count: int = Query(..., ge=1, description="Количество пользователей для загрузки"),
+    count: int = Query(..., ge=1),
     db: AsyncSession = Depends(get_db)
 ):
     service = UserService(db)
     loaded_count = await service.load_users_from_api(count)
-    
+
     return {
-        "message": f"Успешно загружено пользователей: {loaded_count}",
+        "message": f"Successfully uploaded users: {loaded_count}",
         "count": loaded_count
     }

@@ -22,7 +22,6 @@ class UserService:
         self.repo = UserRepository(session)
 
     async def get_all_users_for_table(self) -> List[UserTableResponse]:
-        """Получить всех пользователей для таблицы (только основные поля)"""
         users = await self.repo.get_all()
         return [UserTableResponse.model_validate(user) for user in users]
 
@@ -145,35 +144,29 @@ class UserService:
             logger.info(f"Fetched {len(users_data)} users from API")
             return users_data
 
-
     async def load_users_from_api(self, count: int) -> int:
-
         total_loaded = 0
-        
+
         while total_loaded < count:
             remaining = count - total_loaded
             batch_size = min(settings.API_LIMIT, remaining)
-            
+
             try:
                 users_data = await self.fetch_users_from_api(batch_size)
                 if users_data:
                     await self.repo.bulk_create(users_data)
                     total_loaded += len(users_data)
-                    logger.info(f"Loaded {len(users_data)} users (total: {total_loaded}/{count})")
-                
-                # Ждем 1 секунду между запросами (ограничение API)
+
                 if total_loaded < count:
                     await asyncio.sleep(1)
-                    
+
             except Exception as e:
                 logger.error(f"Error loading batch: {e}")
                 continue
-        
+
         await self.session.commit()
         logger.info(f"Successfully loaded {total_loaded} users")
         return total_loaded
-
-
 
     async def load_initial_data(self, count: int = 1000):
         existing_count = await self.repo.count()
@@ -184,3 +177,7 @@ class UserService:
 
         logger.info(f"Loading initial {count} users...")
         await self.load_users_from_api(count)
+
+    async def get_count_users(self):
+        count = await self.repo.count()
+        return count

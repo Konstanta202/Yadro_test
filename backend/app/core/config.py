@@ -7,7 +7,7 @@ load_dotenv(env_file)
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Подари мне"
+    PROJECT_NAME: str = "Random People Database "
     VERSION: str = "1.0.0"
 
     DB_HOST: str

@@ -2,9 +2,9 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from app.core.db import create_tables, drop_tables
+from app.core.db import create_tables, drop_tables # noqa
 from app.api.routers.users import router as user_router
-from app.core.init_data import init_database
+from app.core.init_data import init_users
 import logging
 from app.models import User # noqa
 
@@ -16,10 +16,10 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Start app")
-    await init_database()
-
+    # await init_database()
+    await init_users()
     yield
-    await drop_tables()
+    # await drop_tables()
     logger.info("Shutting down application...")
 
 
