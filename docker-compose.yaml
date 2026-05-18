@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   backend:
     build: ./backend
@@ -9,12 +7,15 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     networks:
       - app-network
     command: >
       sh -c "
         uv run alembic upgrade head &&
+        uv run pytest tests/unit/ -v --tb=short &&
+        uv run pytest tests/integration/ -v &&
         uv run uvicorn app.api.main:app --host 0.0.0.0 --port 8000
       "
 
@@ -39,7 +40,17 @@ services:
       - "5440:5432"
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  postgres_data:
