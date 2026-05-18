@@ -23,8 +23,8 @@
 ## Быстрый запуск (Docker)
 
 ### Клонировать репозиторий
-git clone <repo-url>
-cd <project-dir>
+git clone [<repo-url>](https://github.com/Konstanta202/Yadro_test.git)
+cd [<project-dir>]
 
 ### Запустить все сервисы
 docker-compose up --build
@@ -60,13 +60,13 @@ COUNT_USERS_INIT=1000
 ## Миграции (через uv)
 
 bash
-# Создать миграцию
+### Создать миграцию
 uv run alembic revision --autogenerate -m "описание"
 
-# Применить
+### Применить
 uv run alembic upgrade head
 
-# Откатить
+### Откатить
 uv run alembic downgrade -1
 
 
@@ -75,11 +75,11 @@ uv run alembic downgrade -1
 Общее покрытие: **73%** (21 тест)
 ### Запуск тестов
 
-# Все тесты с покрытием
+### Все тесты с покрытием
 uv run pytest tests/ --cov=app --cov-report=term-missing
 
-# Только модульные
+### Только модульные
 uv run pytest tests/unit/ -v
 
-# Только интеграционные
+### Только интеграционные
 uv run pytest tests/integration/ -v -m integration
