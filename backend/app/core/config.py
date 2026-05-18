@@ -15,3 +15,20 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_PASS: str
     DB_NAME: str
+    API_BASE_URL: str
+    COUNT_USERS_INIT: int
+    API_LIMIT: int
+
+    @property
+    def DATABASE_URL_asyncpg(self):
+        base_url = f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@"
+        host_port = f"{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+        return base_url + host_port
+
+    class Config:
+        case_sensitive = True
+        extra = "ignore"
+        env_file = ".env"
+
+
+settings = Settings()
