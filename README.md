@@ -20,22 +20,6 @@
 - Unit-тесты (моки БД и API)
 - Интеграционные тесты (SQLite в памяти)
 
-## Архитектура
-backend/
-├── app/
-│ ├── api/ # FastAPI приложение и роутеры
-│ ├── core/ # Конфигурация, БД, инициализация
-│ ├── models/ # Модели SQLAlchemy
-│ ├── repositories/ # Слой работы с БД (CRUD)
-│ ├── schemas/ # Pydantic схемы
-│ └── services/ # Бизнес-логика
-├── migration/ # Alembic миграции
-├── tests/
-│ ├── unit/ # Unit-тесты
-│ └── integration/ # Интеграционные тесты
-└── frontend/ # React-приложение
-
-
 ## Быстрый запуск (Docker)
 
 # Клонировать репозиторий
