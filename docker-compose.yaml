@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend-test-task
+    env_file:
+      - backend/.env
+    expose:
+      - "8000"
+    depends_on:
+      - database
+    networks:
+      - app-network
+
+  database:
+    image: postgres:15
+    container_name: databese-test-task
+    environment:
+      POSTGRES_DB: test_task_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1111
+    ports:
+      - "5437:5432"
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge 
