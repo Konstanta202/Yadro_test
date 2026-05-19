@@ -22,13 +22,19 @@
 
 ## Быстрый запуск (Docker)
 
-```bash
 # Клонировать репозиторий
-git clone https://github.com/Konstanta202/Yadro_test.git
-cd Yadro_test
-
+```
+❯ git clone https://github.com/Konstanta202/Yadro_test.git
+```
+```
+❯ cd Yadro_test
+```
 # Запустить все сервисы
-docker-compose up --build
+
+```
+❯ docker-compose up --build
+```
+
 
 Приложение будет доступно:
 
@@ -41,35 +47,42 @@ Swagger: http://localhost:8000/docs
 ## Для локальной разработки 
 
 ### используется .env (порт БД 5440 проброшен из Docker):
-
+```
 DB_HOST=localhost
 DB_PORT=5440
 DB_USER=postgres
 DB_PASS=1111
 DB_NAME=test_task_db
 COUNT_USERS_INIT=1000
+```
 
 ### Для Docker используется .env.docker (хост database — имя сервиса):
-
+```
 DB_HOST=database
 DB_PORT=5432
 DB_USER=postgres
 DB_PASS=1111
 DB_NAME=test_task_db
 COUNT_USERS_INIT=1000
+```
 
 ## Миграции (через uv)
 
-bash
 ### Создать миграцию
-uv run alembic revision --autogenerate -m "описание"
+
+```
+❯ uv run alembic revision --autogenerate -m "описание"
+```
 
 ### Применить
-uv run alembic upgrade head
+```
+❯ uv run alembic upgrade head
+```
 
 ### Откатить
-uv run alembic downgrade -1
-
+```
+❯ uv run alembic downgrade -1
+```
 
 ## Тестирование
 
@@ -78,10 +91,16 @@ uv run alembic downgrade -1
 ### Запуск тестов
 
 #### Все тесты с покрытием
-uv run pytest tests/ --cov=app --cov-report=term-missing
+```
+❯ uv run pytest tests/ --cov=app --cov-report=term-missing
+```
 
 #### Только модульные
-uv run pytest tests/unit/ -v
+```
+❯ uv run pytest tests/unit/ -v
+```
 
 #### Только интеграционные
-uv run pytest tests/integration/ -v -m integration
+```
+❯ uv run pytest tests/integration/ -v -m integration
+```
